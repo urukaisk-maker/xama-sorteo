@@ -20,6 +20,14 @@ export default function Footer() {
             <button onClick={() => setModal("cookies")} className="hover:text-cyan-200 transition">
               Política de cookies
             </button>
+            <a
+              href="https://github.com/urukaisk-maker/xama-sorteo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyan-200 transition"
+            >
+              GitHub
+            </a>
           </div>
           <div className="text-cyan-400/50 text-xs">
             Desarrollado por{" "}
