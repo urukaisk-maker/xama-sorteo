@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# XAMA · Sorteo de Cesta Solidaria
 
-## Getting Started
+Aplicación web para el sorteo solidario de cestas de comida de la **ONG XAMA**.
+La participación es **gratuita**: no se compran boletos. Se reparten 40 números y se sortea uno al azar entre los asignados.
 
-First, run the development server:
+🔗 **Demo en producción:** https://xama-sorteo.vercel.app
+
+---
+
+## ✨ Características
+
+- Sorteo visual de 40 números con animación tipo ruleta.
+- Selección aleatoria segura mediante `crypto.getRandomValues`.
+- Resultado destacado en tiempo real, sin recargar la página.
+- Diseño oscuro con estética futurista (cian sobre negro).
+- Totalmente responsive (móvil, tablet, escritorio).
+- Footer con términos de uso, política de privacidad y política de cookies en modales.
+- Favicon propio.
+
+---
+
+## 🛠️ Tecnologías
+
+| Capa | Tecnología |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org/) (App Router + Turbopack) |
+| Lenguaje | TypeScript |
+| Estilos | Tailwind CSS v4 |
+| ORM | [Prisma 7](https://www.prisma.io/) |
+| Base de datos | PostgreSQL ([Neon](https://neon.tech/)) |
+| Despliegue | [Vercel](https://vercel.com/) |
+| Gestor de paquetes | npm |
+
+---
+
+## 🚀 Puesta en marcha
+
+### Requisitos
+
+- Node.js 20 o superior
+- Una base de datos PostgreSQL (recomendado: Neon, gratuito)
+
+### Instalación
+
+```bash
+git clone git@github.com:urukaisk-maker/xama-sorteo.git
+cd xama-sorteo
+npm install
+```
+
+### Variables de entorno
+
+Crea un archivo `.env` en la raíz con:
+
+```env
+DATABASE_URL="postgresql://usuario:password@host-pooler.region.aws.neon.tech/neondb?sslmode=require"
+DATABASE_URL_UNPOOLED="postgresql://usuario:password@host.region.aws.neon.tech/neondb?sslmode=require"
+```
+
+- `DATABASE_URL`: cadena **con** `-pooler` (la usa la app).
+- `DATABASE_URL_UNPOOLED`: cadena **sin** `-pooler` (la usan las migraciones).
+
+### Base de datos
+
+```bash
+npx prisma generate
+npx prisma migrate dev --name init
+npm run db:seed
+```
+
+El seed crea un sorteo con los 40 números en estado `disponible`.
+
+### Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📜 Scripts disponibles
 
-## Learn More
+| Comando | Descripción |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción (genera Prisma + compila Next) |
+| `npm start` | Sirve el build de producción |
+| `npm run lint` | Linter |
+| `npm run db:migrate` | Crea y aplica una migración |
+| `npm run db:seed` | Ejecuta el seed |
+| `npm run db:studio` | Abre Prisma Studio |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📂 Estructura del proyecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+xama-sorteo/
+├── prisma/
+│   ├── schema.prisma        # Modelos Sorteo, Numero
+│   ├── seed.ts              # Seed inicial
+│   └── migrations/          # Migraciones
+├── src/
+│   ├── app/
+│   │   ├── page.tsx         # Página principal (server)
+│   │   ├── Sorteo.tsx       # Componente cliente con la ruleta
+│   │   ├── Footer.tsx       # Footer con modales
+│   │   ├── layout.tsx       # Layout raíz
+│   │   ├── globals.css      # Estilos globales
+│   │   └── icon.svg         # Favicon
+│   └── lib/
+│       └── prisma.ts        # Cliente Prisma compartido
+├── prisma.config.ts         # Configuración de Prisma 7
+└── package.json
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ☁️ Despliegue en Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Conecta el repositorio en [vercel.com/new](https://vercel.com/new).
+2. En **Environment Variables**, añade:
+   - `DATABASE_URL` (con `-pooler`)
+   - `DATABASE_URL_UNPOOLED` (sin `-pooler`)
+3. Deploy.
+
+Cada `git push` a `main` redespliega automáticamente.
+
+> Si modificas el esquema de Prisma, ejecuta desde tu máquina:
+> ```bash
+> npx prisma migrate deploy
+> ```
+> El build de Vercel no aplica migraciones.
+
+---
+
+## 👤 Autor
+
+Desarrollado por **[Manuel Casimiro Carrasco](https://unique-biscochitos-31bcea.netlify.app/)**
+
+---
+
+## 📄 Licencia
+
+Proyecto solidario de la **ONG XAMA**. Todos los derechos reservados.
