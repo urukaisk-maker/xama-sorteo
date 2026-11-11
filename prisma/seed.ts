@@ -17,16 +17,16 @@ async function main() {
       descripcion: 'Cesta de comida solidaria. Sin compra de boletos.',
       premio: 'Cesta de comida',
       estado: 'abierto',
-      maxNumeros: 40,
+      maxNumeros: 60,
     },
   })
-  const numeros = Array.from({ length: 40 }, (_, i) => ({
+  const numeros = Array.from({ length: 60 }, (_, i) => ({
     sorteoId: sorteo.id,
     numero: i + 1,
     estado: 'disponible',
   }))
   await prisma.numero.createMany({ data: numeros })
-  console.log(`Sorteo creado con id ${sorteo.id} y 40 números disponibles.`)
+  console.log(`Sorteo creado con id ${sorteo.id} y 60 números disponibles.`)
 }
 
 main()

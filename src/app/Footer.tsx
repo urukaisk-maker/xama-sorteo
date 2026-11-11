@@ -75,7 +75,7 @@ export default function Footer() {
                 <>
                   <p>El presente sorteo solidario es organizado por la ONG XAMA sin ánimo de lucro.</p>
                   <p>La participación es totalmente gratuita. No se realiza ningún pago ni compra de boletos.</p>
-                  <p>Cada participante puede obtener un único número entre el 1 y el 40.</p>
+                  <p>Cada participante puede obtener un único número entre el 1 y el 60.</p>
                   <p>El sorteo se realizará de forma pública y transparente entre los números asignados.</p>
                   <p>El ganador será contactado a través de los datos facilitados durante el registro.</p>
                   <p>XAMA se reserva el derecho de modificar o cancelar el sorteo por causas justificadas.</p>

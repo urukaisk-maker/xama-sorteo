@@ -14,7 +14,7 @@ model Sorteo {
   premio      String
   fechaSorteo DateTime?
   estado      String   @default("borrador")
-  maxNumeros  Int      @default(40)
+  maxNumeros  Int @default(60)
   numeros     Numero[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
