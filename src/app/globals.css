@@ -1,2 +1,36 @@
 @import "tailwindcss";
 body { background: #fdfaf5; color: #1c1917; }
+/* Slot machine: el número "cae" desde arriba */
+@keyframes slotRoll {
+  from {
+    transform: translateY(-60%) scale(0.85);
+    opacity: 0.2;
+    filter: blur(6px);
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.slot-number {
+  animation: slotRoll 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity, filter;
+}
+
+/* Glow pulsante en el número ganador */
+@keyframes winnerGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.6),
+                 0 0 40px rgba(34, 211, 238, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(34, 211, 238, 1),
+                 0 0 80px rgba(34, 211, 238, 0.8);
+  }
+}
+
+.winner-number {
+  animation: winnerGlow 1.2s ease-in-out infinite;
+}
