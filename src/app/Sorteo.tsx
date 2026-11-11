@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import confetti from "canvas-confetti";
 import { playTick, playFanfare } from "@/lib/audio";
+import ShareButtons from "./ShareButtons";
 
 export default function Sorteo({ numeros }: { numeros: number[] }) {
   const [ganador, setGanador] = useState<number | null>(null);
@@ -195,6 +196,10 @@ export default function Sorteo({ numeros }: { numeros: number[] }) {
           >
             {soundOn ? "🔊 Sonido activo" : "🔇 Sonido silenciado"}
           </button>
+
+          {finished && ganador !== null && (
+            <ShareButtons ganador={ganador} />
+          )}
         </div>
       </div>
     </main>
