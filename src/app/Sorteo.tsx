@@ -1,4 +1,5 @@
 "use client";
+import InstallButton from "./InstallButton";
 import { useRef, useState } from "react";
 import confetti from "canvas-confetti";
 import { playTick, playFanfare } from "@/lib/audio";
@@ -196,6 +197,21 @@ export default function Sorteo({ numeros }: { numeros: number[] }) {
           >
             {soundOn ? "🔊 Sonido activo" : "🔇 Sonido silenciado"}
           </button>
+                    <button
+            type="button"
+            onClick={toggleSound}
+            className="text-xs text-cyan-400/60 hover:text-cyan-200 transition"
+            aria-label={soundOn ? "Silenciar sonidos" : "Activar sonidos"}
+          >
+            {soundOn ? "🔊 Sonido activo" : "🔇 Sonido silenciado"}
+          </button>
+
+          <InstallButton />
+
+          {finished && ganador !== null && (
+            <ShareButtons ganador={ganador} />
+          )}
+        </div>
 
           {finished && ganador !== null && (
             <ShareButtons ganador={ganador} />
